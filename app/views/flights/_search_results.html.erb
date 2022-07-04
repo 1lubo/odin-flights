@@ -1,0 +1,18 @@
+<%= form_with url: "bookings/new/", method: "get" do |f| %>
+    <% @available_flights.each do |flight| %>
+        <% selected_date = flight.start.strftime('%b %d %Y') %>
+        
+        <div class="">
+            <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
+        </div>
+        <div>
+            <%= selected_date %>
+            <%= flight.scheduled_time %>
+            <%= flight.departure_airport.name %>
+            <%= flight.arrival_airport.name %>
+        </div>
+
+    <% end %>
+    <%= hidden_field_tag :passengers, params[:passengers] %>
+    <%= f.submit "Continue" %>
+<% end %>

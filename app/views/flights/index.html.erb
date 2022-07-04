@@ -2,21 +2,44 @@
 
 <%= form_tag(flights_path, method: :get) do %>   
     <%= label_tag(:departure_airport_id, "From") %>
-    <%= select_tag(:departure_airport_id, options_for_select(@airports),  include_blank: true)%>    
+    <%= select_tag(:departure_airport_id, options_for_select(@airports), prompt: "From?")%>
     <%= label_tag(:arrival_airport_id, "To") %>
-    <%= select_tag(:arrival_airport_id, options_for_select(@airports),  include_blank: true)%>
+    <%= select_tag(:arrival_airport_id, options_for_select(@airports), prompt: "To?")%>
+    <%= label_tag(:passengers, "Passengers") %>
+    <%= select_tag(:passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]]), include_blank: true) %>
     <%= label_tag(:start, "Date") %>
-    <%= select_tag(:start, options_for_select(@start), include_blank: true)%>    
+    <%= select_tag(:start, options_for_select(@start), prompt: "Select date")%>    
     <%= submit_tag("Search", name: nil) %>
 <% end %>
 
-<ul>
-    <% if !@flights.empty? %>
-        <% @flights.each do |flight| %>
-            <li> <%= flight.id %>| <%= flight.departure_airport.name %> to <%= flight.arrival_airport.name %> | 
-            <%= flight.duration %> minutes </li>
-        <% end %>    
+
+<% unless @available_flights.nil? %>
+    <% if @available_flights.any? %>
+        <%= render "search_results"%>
     <% else %>
         <h2>No flights for this selection</h2>
     <% end %>
-</ul>
+<% end %>
+<!-- 
+<%# if !@flights.nil? %>
+    <%#= form_with model: @booking do |form| %>
+        <%# form.collection_radio_buttons :flight, @flights, :id, :duration %>
+        <%#= form.collection_check_boxes :flight, @flights, :id, :start do |b| %>
+            <div class="">
+                <%#= b.check_box %>
+                <%#= b.label %>
+            </div>
+        <%# end %>
+    <%# end %>
+<%# end %>
+
+<ul>
+    <%# if !@flights.empty? %>
+        <%# @flights.each do |flight| %>
+            <li> <%# flight.id %>| <%#= flight.departure_airport.name %> to <%#= flight.arrival_airport.name %> | 
+            <%# flight.duration %> minutes </li>
+        <%# end %>    
+    <%# else %>
+        <h2>No flights for this selection</h2>
+    <%# end %>
+</ul>-->
