@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord
-  belongs_to :flight
+  belongs_to :flight, optional: true
   has_many :passenger_bookings, dependent: :delete_all
   has_many :passengers, through: :passenger_bookings, inverse_of: :bookings
 
