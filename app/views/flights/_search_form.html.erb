@@ -4,7 +4,7 @@
         <div class="field is-horizontal">            
             <div class="select is-medium"><%= select_tag(:departure_airport_id, options_for_select(@airports), prompt: "Origin")%></div>            
             <div class="select is-medium"><%= select_tag(:arrival_airport_id, options_for_select(@airports), prompt: "Destination")%></div>            
-            <div class="select is-medium"><%= select_tag(:tickets, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]]), include_blank: true, prompt: "Passengers" ,required: false) %></div>            
+            <div class="select is-medium"><%= select_tag(:tickets, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]]), prompt: "Passengers" ,required: false) %></div>            
             <div class="select is-medium"><%= select_tag(:start, options_for_select(@start), prompt: "Date")%></div>
             <div class="control"><%= submit_tag("Search", name: nil, class: 'button is-link is-medium') %></div>
         </div>

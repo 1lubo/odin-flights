@@ -1,10 +1,4 @@
-<h1><%= @booking %> </h1>
 
-<p> <%= @booking.flight %> </p>
-
- <% @booking.passengers.each do |p| %>
-    <p><%= p.email %></p>
- <% end %>
 
  <div class="container has-text-centered">
    <div class="column is-half is-offset-one-quarter">
@@ -22,6 +16,39 @@
                <td><%= @booking.flight.departure_airport.name %> <%= @booking.flight.scheduled_time %></td>
                <td><%= @booking.flight.arrival_airport.name %></td>
             </tr>
+         </tbody>
+      </table>
+      <h3 class="title is-3">Passenger Details</h3>
+      <table class="table is-fullwidth">
+         <thead>
+            <tr>
+            <th>Passenger Name</th>               
+            </tr>
+         </thead>
+         <tbody>
+            <% @booking.passengers.each do |passenger| %>
+               <tr>
+                  <td><%= passenger.name %></td>
+               </tr>
+            <% end %>
+         </tbody>
+      </table>
+
+      <h3 class="title is-3">Contact Details</h3>
+      <table class="table is-fullwidth">
+         <thead>
+            <tr>
+            <th>Passenger Name</th>
+            <th>Email</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% @booking.passengers.each do |passenger| %>
+               <tr>
+                  <td><%= passenger.name %></td>
+                  <td><%= passenger.email %></td>
+               </tr>
+            <% end %>
          </tbody>
       </table>
    </div>

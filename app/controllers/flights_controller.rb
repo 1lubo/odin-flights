@@ -2,15 +2,6 @@
 
 class FlightsController < ApplicationController
   def index
-    # @available_flights = Flight.where(start: params[:start]) if params[:start].present?
-    #
-    # if params[:departure_airport_id].present?
-    #  @available_flights = Flight.where(departure_airport_id: params[:departure_airport_id])
-    # end
-    #
-    # if params[:arrival_airport_id].present?
-    #  @available_flights = Flight.where(arrival_airport_id: params[:arrival_airport_id])
-    # end
     @airports = Airport.all.map { |a| [a.name, a.id] }
 
     @start = Flight.distinct.pluck(:start).sort
@@ -36,11 +27,7 @@ class FlightsController < ApplicationController
       @available_flights = Flight.where(arrival_airport_id: params[:arrival_airport_id])
     else
       @available_flights = []
-      flash[:notice] = 'No flights for this selection.'
-    end
-
-    unless @available_flights.empty?
-      @available_flights_checkbox = @available_flights.map { |f| [f.id, f.departure_airport, f.arrival_airport] }
+      flash[:warning] = 'No flights for this selection.'
     end
   end
 

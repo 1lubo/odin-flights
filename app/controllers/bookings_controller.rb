@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
       @booking = Booking.new
       params[:tickets].to_i.times { @booking.passengers.build }
       @flight = Flight.find(params[:flight_id])
+      render :new
     end
   end
 
@@ -21,11 +22,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
 
     if @booking.save
-      redirect_to @booking
       flash[:success] = 'Booking was created successfully.'
+      redirect_to @booking
     else
       flash[:danger] = @booking.errors.full_messages
       # flash[:warning] = "Failed to create Booking: #{@booking.collect_errors}"
+      @flight = Flight.find(params[:booking][:flight_id])
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,6 +35,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, passengers_attributes: %i[name email _destroy])
+    params.require(:booking).permit(:flight_id, passengers_attributes: %i[id name email])
   end
 end

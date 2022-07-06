@@ -1,0 +1,22 @@
+
+
+<table class="table is-bordered is-hoverable is-fullwidth">
+    <thead>        
+        <tr>
+            <th class="is-size-5">Departs from</th>
+            <th class="is-size-5">Arrives at</th>
+            <th class="is-size-5">Date</th>
+            <th class="is-size-5">Departure</th>
+            <th class="is-size-5">Duration</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= @flight.departure_airport.name %></td>
+            <td><%= @flight.arrival_airport.name %></td>
+            <td><%= @flight.start.strftime('%b %d %Y') %></td>
+            <td><%= @flight.scheduled_time %></td>
+            <td><%= @flight.duration / 60 %>h  <%= @flight.duration % 60 %>m</td>
+        </tr>
+    </tbody>
+</table>

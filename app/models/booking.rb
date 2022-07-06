@@ -1,22 +1,17 @@
 # frozen_string_literal: true
 
 class Booking < ApplicationRecord
-  has_one :flight
-  has_many :passengers, dependent: :destroy
-  accepts_nested_attributes_for :passengers, allow_destroy: true
+  belongs_to :flight
+  has_many :passenger_bookings, dependent: :delete_all
+  has_many :passengers, through: :passenger_bookings, inverse_of: :bookings
+
+  accepts_nested_attributes_for :passengers
 
   validates :passengers, :flight, presence: true
   validates_associated :passengers
 
   before_validation :find_or_create_passenger
-
-  private
-
-  def find_or_create_passenger
-    self.passengers = passengers.map do |pax|
-      Passenger.find_or_create_by(name: pax.name, email: pax.email)
-    end
-  end
+  after_validation :collect_errors
 
   def collect_errors
     errors = []
@@ -29,5 +24,13 @@ class Booking < ApplicationRecord
       errors << pax.errors.messages.values.join(', ') if pax.errors.any?
     end
     errors.join(', ')
+  end
+
+  private
+
+  def find_or_create_passenger
+    self.passengers = passengers.map do |pax|
+      Passenger.find_or_create_by(name: pax.name, email: pax.email)
+    end
   end
 end

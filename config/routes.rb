@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get '/bookings/new', to: 'bookings#new'
   post '/bookings', to: 'bookings#create'
   get 'bookings/:id/', to: 'bookings#show', as: 'booking'
+
+  get 'about', to: 'application#about'
 end

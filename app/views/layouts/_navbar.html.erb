@@ -1,0 +1,25 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">    
+    <%= link_to "https://www.theodinproject.com/", class: 'navbar-item image is-64x64' do %>
+        <%=image_tag("https://cdn.iconscout.com/icon/premium/png-256-thumb/odin-1048739.png") %>        
+    <% end %>    
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+        <%= link_to 'Odin Flights', root_path, class: "navbar-item" %>  
+    </div>   
+     
+    <div class="navbar-end">
+      <div class="navbar-item">
+         <%= link_to 'About', about_path, class: "navbar-item" %>
+      </div>
+    </div>
+  </div>
+</nav>
