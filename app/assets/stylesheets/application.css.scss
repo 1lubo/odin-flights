@@ -12,4 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require material_icons
  */
+ $table-head-background-color: hsl(217, 71%, 53%);
+ $table-row-hover-background-color: hsla(217, 72%, 89%, 0.37);
+
+ @import "bulma"
+
+ 

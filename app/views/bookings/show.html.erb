@@ -1,0 +1,28 @@
+<h1><%= @booking %> </h1>
+
+<p> <%= @booking.flight %> </p>
+
+ <% @booking.passengers.each do |p| %>
+    <p><%= p.email %></p>
+ <% end %>
+
+ <div class="container has-text-centered">
+   <div class="column is-half is-offset-one-quarter">
+      <h3 class="title is-3">Booking Summary</h3>
+      <h4 class="title is-4"><%= @booking.flight.start.strftime('%b %d %Y')%></h4>
+      <table class="table is-fullwidth">
+         <thead>
+            <tr>
+               <th>Departure</th>
+               <th>Arrival</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td><%= @booking.flight.departure_airport.name %> <%= @booking.flight.scheduled_time %></td>
+               <td><%= @booking.flight.arrival_airport.name %></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+ </div>

@@ -36,6 +36,7 @@ class FlightsController < ApplicationController
       @available_flights = Flight.where(arrival_airport_id: params[:arrival_airport_id])
     else
       @available_flights = []
+      flash[:notice] = 'No flights for this selection.'
     end
 
     unless @available_flights.empty?

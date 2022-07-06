@@ -7,10 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%#link rel="stylesheet" href="https://unpkg.com/bulmaswatch/sandstone/bulmaswatch.min.css"%>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header></header>
+    <div class=""> <%= render 'layouts/error_messages' %> </div>    
+    <div class="section">
+      <div class="container"><%= yield %></div>
+    </div>
   </body>
 </html>

@@ -1,18 +1,31 @@
-<%= form_with url: "bookings/new/", method: "get" do |f| %>
-    <% @available_flights.each do |flight| %>
-        <% selected_date = flight.start.strftime('%b %d %Y') %>
-        
-        <div class="">
-            <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
-        </div>
-        <div>
-            <%= selected_date %>
-            <%= flight.scheduled_time %>
-            <%= flight.departure_airport.name %>
-            <%= flight.arrival_airport.name %>
-        </div>
+<h3 class="title is 3"><%= pluralize(@available_flights.size, 'flight') %> matched your search</h3>
 
-    <% end %>
-    <%= hidden_field_tag :passengers, params[:passengers] %>
-    <%= f.submit "Continue" %>
-<% end %>
+<table class="table is-bordered is-hoverable is-fullwidth">
+    <thead>        
+        <tr>
+            <th class="is-size-5">Departs from</th>
+            <th class="is-size-5">Arrives at</th>
+            <th class="is-size-5">Date</th>
+            <th class="is-size-5">Departure</th>
+            <th class="is-size-5">Duration</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @available_flights.each do |flight| %>
+            <tr>
+                <td class="is-size-4"><%= flight.departure_airport.name %></td>
+                <td class="is-size-4"><%= flight.arrival_airport.name %></td>
+                <td class="is-size-4"><%= flight.start.strftime('%b %d %Y') %></td>
+                <td class="is-size-4"><%= flight.scheduled_time %></td>
+                <td class="is-size-4"><%= flight.duration / 60 %>h  <%= flight.duration % 60 %>m</td>
+                <td class="has-text-centered">
+                    <%= button_to "Book Flight", bookings_new_path,
+                    method: :get, params: {flight_id: flight.id, tickets: params[:tickets]},
+                    id: 'booking-button', class: 'button is-link is-medium is-outlined' %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+

@@ -1,16 +1,17 @@
 <h1>Odin Flights</h1>
 
-<%= form_tag(flights_path, method: :get) do %>   
-    <%= label_tag(:departure_airport_id, "From") %>
-    <%= select_tag(:departure_airport_id, options_for_select(@airports), prompt: "From?")%>
-    <%= label_tag(:arrival_airport_id, "To") %>
-    <%= select_tag(:arrival_airport_id, options_for_select(@airports), prompt: "To?")%>
-    <%= label_tag(:passengers, "Passengers") %>
-    <%= select_tag(:passengers, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]]), include_blank: true) %>
-    <%= label_tag(:start, "Date") %>
-    <%= select_tag(:start, options_for_select(@start), prompt: "Select date")%>    
-    <%= submit_tag("Search", name: nil) %>
-<% end %>
+<%= render "search_form"%>
+<%#= form_tag(flights_path, method: :get) do %>   
+    <%#= label_tag(:departure_airport_id, "From") %>
+    <%#= select_tag(:departure_airport_id, options_for_select(@airports), prompt: "From?")%>
+    <%#= label_tag(:arrival_airport_id, "To") %>
+    <%#= select_tag(:arrival_airport_id, options_for_select(@airports), prompt: "To?")%>
+    <%#= label_tag(:tickets, "Passengers") %>
+    <%#= select_tag(:tickets, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]]), include_blank: true, required: false) %>
+    <%#= label_tag(:start, "Date") %>
+    <%#= select_tag(:start, options_for_select(@start), prompt: "Select date")%>    
+    <%#= submit_tag("Search", name: nil) %>
+<%# end %>
 
 
 <% unless @available_flights.nil? %>
