@@ -25,8 +25,14 @@ class FlightsController < ApplicationController
     elsif !params[:start].present? && !params[:departure_airport_id].present? &&
           params[:arrival_airport_id].present?
       @available_flights = Flight.where(arrival_airport_id: params[:arrival_airport_id])
+    elsif !params[:start].present? && !params[:departure_airport_id].present? &&
+          !params[:arrival_airport_id].present?
+      @available_flights = nil
+
     else
       @available_flights = []
+    end
+    if !@available_flights.nil? && @available_flights.empty?
       flash[:warning] = 'No flights for this selection.'
     end
   end
