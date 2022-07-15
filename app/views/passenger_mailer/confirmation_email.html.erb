@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-
+        Type' />
+    </head>
+    <body>
+        <h1>Hi <%= @passenger.name %>, 
+        
+        <p>You have successfully booked a flight with Odin Air</h1></p>
+        <p>
+            Your Flight # <%= @flight.id %> is scheduled to leave <%= @flight.departure_airport.name %> on <%= @flight.start.strftime('%b %d %Y') %> <%= @flight.scheduled_time %>
+        </p>
+        <p>
+            Thanks for flying with Odin Air.
+        </p>
+
+    </body>
+</html>

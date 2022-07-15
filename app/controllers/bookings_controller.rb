@@ -23,6 +23,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       flash[:success] = 'Booking was created successfully.'
+      PassengerMailer.with(passenger: @booking.passengers.first).confirmation_email.deliver_later
       redirect_to @booking
     else
       flash[:danger] = @booking.errors.full_messages
